@@ -21,7 +21,7 @@ router.post('/', (req, res)=>{
 
     const user = {id: ++usersIDs, first_name, last_name, email}
     users.push(user);
-
+    console.log("users", users)
     res.send({status:'success', payload: user})
 })
 
@@ -61,17 +61,18 @@ router.get('/:id', (req, res)=>{
 
     if(!id || isNaN(id)){
         throw new CustomError({
-            name: 'Id param error',
+            name: 'Invalid id param error',
             cause: getInvalidIdParamInfo(id),
             message: 'Id is missing or unvalid',
             code: ErrorTypes.INVALID_PARAM_ERROR
         })
     }
-
-    const foundUser = users.find(u=>u.id = id)
+    console.log('users', users)
+    const foundUser = users.find(u=>u.id == id)
+    console.log("foundUser", foundUser)
     if(!foundUser){
         throw new CustomError({
-            name: 'Id param error',
+            name: 'Unexisting id param error',
             cause: getInvalidIdParamInfo(id),
             message: 'Id does not exist',
             code: ErrorTypes.INVALID_PARAM_ERROR
