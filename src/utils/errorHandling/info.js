@@ -7,4 +7,12 @@ const getUserErrorInfo = (user)=>{
         `
 }
 
-module.exports = getUserErrorInfo;
+const getInvalidIdParamInfo = (id)=>{
+    return `Se esperaba un paramétro con valor númerico 
+        *se recibio: ${id}`
+}
+
+module.exports = {
+    getUserErrorInfo,
+    getInvalidIdParamInfo
+};
